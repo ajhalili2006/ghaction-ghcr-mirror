@@ -1,5 +1,5 @@
 [![GitHub release](https://img.shields.io/github/release/crazy-max/ghaction-dockerhub-mirror.svg?style=flat-square)](https://github.com/crazy-max/ghaction-dockerhub-mirror/releases/latest)
-[![CI workflow](https://img.shields.io/github/workflow/status/crazy-max/ghaction-dockerhub-mirror/ci?label=ci&logo=github&style=flat-square)](https://github.com/crazy-max/ghaction-dockerhub-mirror/actions?workflow=test)
+[![CI workflow](https://img.shields.io/github/actions/workflow/status/crazy-max/ghaction-dockerhub-mirror/ci.yml?branch=master&label=ci&logo=github&style=flat-square)](https://github.com/crazy-max/ghaction-dockerhub-mirror/actions?workflow=test)
 [![Become a sponsor](https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square)](https://github.com/sponsors/crazy-max)
 [![Paypal Donate](https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square)](https://www.paypal.me/crazyws)
 
@@ -7,8 +7,6 @@
 
 GitHub Action [composite](https://docs.github.com/en/actions/creating-actions/creating-a-composite-run-steps-action)
 to mirror a DockerHub repo to another registry.
-
-If you are interested, [check out](https://git.io/Je09Y) my other :octocat: GitHub Actions!
 
 ![](.github/workflow_dispatch.png) ![Screenshot](.github/screenshot.png)
 
@@ -46,19 +44,19 @@ jobs:
     steps:
       -
         name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
       -
         name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       -
         name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Login to ${{ github.event.inputs.dest-registry }}
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ${{ github.event.inputs.dest-registry }}
           username: ${{ secrets.DEST_USERNAME }}
